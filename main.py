@@ -1,17 +1,20 @@
 import utils
-from time import sleep
-import pandas as pd
 
 if __name__ == '__main__':
 
-    enderecos = []
     enderecos = utils.pega_enderecos()
+    coordenadas_lista = []
+    for endereco in enderecos:
+        coordenadas = utils.transforma_endereco_em_coordenada(endereco)
+        coordenadas_lista.append(coordenadas)
     
-    distancia_pares = utils.gera_pares_distancia(enderecos)
-    solucao = utils.gera_otimizacao(enderecos, distancia_pares)
-    utils.mostra_rota_otimizada(enderecos, solucao)
+    distancia_pares = utils.gera_pares_distancia(coordenadas_lista)
+    solucao = utils.gera_otimizacao(coordenadas_lista, distancia_pares)
+    utils.mostra_rota_otimizada(coordenadas_lista, solucao)
 
-    sleep(600)
-
-
-
+    print("A aplicação está rodando. Pressione Ctrl+C para sair...")
+    try:
+        while True:
+            pass
+    except KeyboardInterrupt:
+        print("Aplicação encerrada.")

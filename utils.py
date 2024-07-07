@@ -9,9 +9,14 @@ from time import sleep
 import pulp
 import itertools
 import pandas as pd
+import googlemaps
+from dotenv import load_dotenv
+import os
 
 
 
+load_dotenv()
+api_key = os.getenv('GOOGLE_API_KEY')
 
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
@@ -160,9 +165,17 @@ def pega_enderecos():
 
     for index, row in df.iterrows():
         endereco = f"{row['Logradouro']}, {row['Número']} - {row['Bairro']} - {row['Cidade']} - BA, 44700-000"
-        print(endereco)
         enderecos.append(endereco)
 
-
-    print(enderecos)
     return enderecos
+
+
+def transforma_endereco_em_coordenada(endereco):
+    gmaps = googlemaps.Client(key=api_key)
+    geocode_result = gmaps.geocode(endereco)
+    if geocode_result:
+        location = geocode_result[0]['geometry']['location']
+        return f"{location['lat']}, {location['lng']}"
+    else:
+        return None
+

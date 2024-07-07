@@ -3,3 +3,5 @@ webdriver-manager
 pulp
 pandas
 geopy
+googlemaps
+python-dotenv

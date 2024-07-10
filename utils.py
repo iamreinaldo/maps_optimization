@@ -51,36 +51,36 @@ def adciona_destino(endereco, num_caixa=1):
 
 def abre_rotas():
     xpath = '//button[@data-value="Rotas"]'
-    wait = WebDriverWait(driver, timeout=5)
+    wait = WebDriverWait(driver, timeout=8)
     botao_rotas = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
     botao_rotas.click()
 
     xpath = '//button[@aria-label="Fechar rotas"]'
-    wait = WebDriverWait(driver, timeout=5)
+    wait = WebDriverWait(driver, timeout=8)
     botao_rotas = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
 
 def adciona_caixa_destino():
     xpath = '//span[text()="Adicionar destino"]'
-    wait = WebDriverWait(driver, timeout=5)
+    wait = WebDriverWait(driver, timeout=8)
     wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
     botao_adciona_destino = driver.find_element(By.XPATH, xpath)
     botao_adciona_destino.click()
 
 def seleciona_tipo_conducao(tipo_conducao="Carro"):
     xpath = f'//img[@aria-label="{tipo_conducao}"]'
-    wait = WebDriverWait(driver, timeout=5)
+    wait = WebDriverWait(driver, timeout=8)
     botao_conducao = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
     botao_conducao.click()
 
 def retorna_tempo_total():
     xpath = '//div[@id="section-directions-trip-0"]//div[contains(text(),"min")]'
-    wait = WebDriverWait(driver, timeout=5)
+    wait = WebDriverWait(driver, timeout=10)
     elemento_tempo = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
     return float(elemento_tempo.text.replace(' min', ''))
 
 def retorna_distancia_total():
     xpath = '//div[@id="section-directions-trip-0"]//div[contains(text(),"km")]'
-    wait = WebDriverWait(driver, timeout=5)
+    wait = WebDriverWait(driver, timeout=8)
     elemento_tempo = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
     return float(elemento_tempo.text.replace(' km', '').replace(',', '.'))
 

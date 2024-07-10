@@ -3,7 +3,7 @@ import utils
 if __name__ == '__main__':
 
     enderecos = utils.pega_enderecos()
-    coordenadas_lista = []
+    coordenadas_lista = ["Rua Melchior Dias, 9 - Jacobina, BA - 44700000"]
     for endereco in enderecos:
         coordenadas = utils.transforma_endereco_em_coordenada(endereco)
         coordenadas_lista.append(coordenadas)
